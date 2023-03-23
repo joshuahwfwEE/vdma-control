@@ -7,12 +7,12 @@ the procedure is
 
    1-1 Address Width: 32 bit
    
-   1-2 Frame Buffers：3
-       a set of W/R in an action at the same time 
-       FRAME0/FRAME2
-       FRAME1/FRAME0
-       FRAME2/FRAME1
-       
+   1-2 Frame Buffers：3  
+   a set of W/R in an action at the same time  
+   FRAME0/FRAME2  
+   FRAME1/FRAME0  
+   FRAME2/FRAME1  
+     
    1-3 S2MM:
        Memory Map Data Width: 512 bytes
        Write/Read Burst Size: 
