@@ -1,10 +1,8 @@
 # vdma-control
 this file is about controling Xilinx IP VDMA to access block ram or external DDR4 
 the procedure is 
-1. setup VDMA's parameter 
-2. 
-394,170,367
-
+1. setup VDMA's parameter for resolution 1920x1080p full HD  
+  
    1-1 Address Width: 32 bit
    
    1-2 Frame Buffers：3  
@@ -13,21 +11,27 @@ the procedure is
    FRAME1/FRAME0  
    FRAME2/FRAME1  
      
-   1-3 S2MM:
-       Memory Map Data Width: 512 bytes
-       Write/Read Burst Size: 
-       Stream Data Width：32
-       Line Buffer Depth:
+   1-3 M_AXI_S2MM:  
+       Memory Map Data Width: 512 bytes  
+       Write/Read Burst Size: 64  
+       Stream Data Width：32  
+       Line Buffer Depth: 4096  
+   
+   1-4 M_AXI_MM2S:  
+       Memory Map Data Width: 512 bytes  
+       Write/Read Burst Size: 54  
+       Stream Data Width：32  
+       Line Buffer Depth: 512  
        
-       
-3. make sure stream is coming through AXIS MM2S
+2. a frame buffer require 0177E8FFF(h)=>394,170,367(dec) hence I suggest to set 02000000 bytes so that it may not overflow  
+3. make sure stream is coming through S_AXIS S2MM
 4. test memory can R/W 
-5. configure VDMA IP 
-6. enable acessing to AXI S2MM to wr to memory
-7. wait for VDMA S2MM status is no longer halt
-8. enable acessing to AXI MM2S to wr to memorY
-9. wait for VDMA MM2S status is no longer halt
-10. check video stream in AXIS SS2M  
+5. initialize and configure VDMA IP 
+6. enable acessing to M_AXI_S2MM to wr to memory
+7. wait for M_AXI_S2MM status is no longer halt
+8. enable acessing to M_AXI_MM2S to rd to memorY
+9. wait forM_AXI_MM2S status is no longer halt
+10. check video stream from M_AXIS_MM2S  
  
 datapath:
 1. RX frame CRC => AXI4_Stream Subset Converter => S_AXIS S2MM:  
