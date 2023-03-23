@@ -74,3 +74,10 @@ after the tlast is asserted, the S2MM start to active
    the data stream is active while tready and tvalid is asserted by VDMA
    notice that the frequence of data stream needs to be same to the data stream in S_AXIS S2MM
    
+VDMA Status:  
+M_AXI_MM2S 04h:  
+11000  
+10000  
+10001  
+M_AXI_S2MM 34h:  
+10000
