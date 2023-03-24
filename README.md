@@ -60,7 +60,8 @@ after the tlast is asserted, the S2MM start to active
      
 3. M_AXI_MM2S <=> DDR4_S_AXI_CRTL  
    arvalid is asserted, it acquire:  
-   araddr= 810d00000  
+   araddr= 810d00000  80735000=>80736000 start 147=>487  duration 341sample
+   start 664=>964 duration 301sample
    arlength = 07  
    arsize = 64 bytes  
    arcache = 3  
