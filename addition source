@@ -1,0 +1,102 @@
+#ifdef APAPTIVE MODE
+
+
+void bufferWr_callback(void *InstancePtr){
+	u32 Status;
+
+	/* If Adaptive Mode is 1, the FB Read is triggered on FB Wr Interrupt
+	 * This ensures that the frame rate is maintained at TX (appx)
+	 *
+	 */
+	if (fb_rd_start && supports_adaptive && ADAPTIVE_TYPE) {
+		Status = XVFrmbufRd_SetBufferAddr(&frmbufrd, XVFRMBUFWR_BUFFER_BASEADDR);
+		Status |= XVFrmbufRd_SetChromaBufferAddr(&frmbufrd, XVFRMBUFWR_BUFFER_BASEADDR_Y);
+		if(Status != XST_SUCCESS) {
+			xil_printf("ERROR:: Unable to configure Frame Buffer "
+					"Read buffer address\r\n");
+		}
+		if (stopped) {
+			XVFrmbufRd_Start(&frmbufrd);
+			start_rdfb = 0;
+			stopped = 0;
+		} else {
+			/* Ideally this should never be hit in Adaptive Mode 1
+			 * However it can get hit due to system latencies or
+			 * due to delay in servicing interrupts.
+			 * Setting start_rdfb to 1. If this is 1 then FB RD will be
+			 * started when RD interrupt is asserted
+			 */
+            start_rdfb = 1;
+//	        xil_printf(ANSI_COLOR_RED"FrameBUffer RD is not idle !!"ANSI_COLOR_RESET"\r\n");
+		}
+	}
+
+
+	if(XVFRMBUFWR_BUFFER_BASEADDR >= (0 + (0x10000000) + (0x10000000 * 2))){
+
+		XVFRMBUFRD_BUFFER_BASEADDR = (0 + (0x10000000) + (0x10000000 * 1) +
+										offset_rd);
+		XVFRMBUFRD_BUFFER_BASEADDR_Y = (0 + (0x40000000) + (0x10000000 * 1) +
+										offset_rd);
+
+		XVFRMBUFWR_BUFFER_BASEADDR = 0 + (0x10000000);
+		XVFRMBUFWR_BUFFER_BASEADDR_Y = 0 + (0x40000000);
+	}else{
+		XVFRMBUFRD_BUFFER_BASEADDR = XVFRMBUFWR_BUFFER_BASEADDR + offset_rd;
+		XVFRMBUFRD_BUFFER_BASEADDR_Y = XVFRMBUFWR_BUFFER_BASEADDR_Y + offset_rd;
+
+		XVFRMBUFWR_BUFFER_BASEADDR = XVFRMBUFWR_BUFFER_BASEADDR + 0x10000000;
+		XVFRMBUFWR_BUFFER_BASEADDR_Y = XVFRMBUFWR_BUFFER_BASEADDR_Y + 0x10000000;
+	}
+
+	Status = XVFrmbufWr_SetBufferAddr(&frmbufwr, XVFRMBUFWR_BUFFER_BASEADDR);
+	Status |= XVFrmbufWr_SetChromaBufferAddr(&frmbufwr, XVFRMBUFWR_BUFFER_BASEADDR_Y);
+	if(Status != XST_SUCCESS) {
+		xil_printf("ERROR:: Unable to configure Frame Buffer "
+				"Write buffer address\r\n");
+	}
+
+	/* In Non-Adaptive Scenario, the FB Read is in Autorestart mode
+	 *
+	 */
+
+	if (fb_rd_start && (!supports_adaptive || !ADAPTIVE_TYPE)) {
+		Status = XVFrmbufRd_SetBufferAddr(&frmbufrd, XVFRMBUFRD_BUFFER_BASEADDR);
+		Status |= XVFrmbufRd_SetChromaBufferAddr(&frmbufrd, XVFRMBUFRD_BUFFER_BASEADDR_Y);
+		if(Status != XST_SUCCESS) {
+			xil_printf("ERROR:: Unable to configure Frame Buffer "
+					"Read buffer address\r\n");
+		}
+	}
+	fb_wr_count++;
+}
+
+
+void bufferRd_callback(void *InstancePtr){
+	stopped = 1;
+	if (start_rdfb) {
+		start_rdfb = 0;
+		XVFrmbufRd_Start(&frmbufrd);
+		stopped = 0;
+	}
+	fb_rd_count++;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#endif
