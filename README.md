@@ -39,8 +39,8 @@ datapath:
 the data stream is active while tready and tvalid is asserted by VDMA
 tuser is the first stream data transmitted  
 tlast is the last stream data transmitted  
-tdata contains the color scalar according the color format and BPC ( ex: RGB,BPC=10=>10 bytes*4*3= 120 bytes   
-                                                                         RGB,BPC=8=>  8 bytes*4*3=  96 bytes  
+tdata contains the color scalar according the color format and BPC ( ex: RGB,BPC=10=>10 bytes *4 *3 = 120 bytes   
+                                                                         RGB,BPC=8=>  8 bytes *4 *3 =  96 bytes  
                                                                          YCbCr422...)  
 a video stream with 1920x1080 resolution which has h size:1920, v size:1080 per frame  
 a periods of tuser to tlast's data stream is a frame  
