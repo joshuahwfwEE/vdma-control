@@ -10,6 +10,7 @@ the procedure is
    FRAME0/FRAME2  
    FRAME1/FRAME0  
    FRAME2/FRAME1  
+   ![image](https://github.com/joshuahwfwEE/vdma-control/blob/main/VDMA.PNG)
      
    1-3 M_AXI_S2MM:  
        Memory Map Data Width: 512 bytes  
