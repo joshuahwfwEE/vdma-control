@@ -24,14 +24,14 @@ the procedure is
        Stream Data Width：32  
        Line Buffer Depth: 512  
        
-2. a frame buffer require 0177E8FFF(h)=>394,170,367(dec) hence I suggest to set 02000000 bytes so that it may not overflow  
+2. a frame buffer require space of 0177E8FFF(h)=>394,170,367(dec) hence I suggest to set 02000000(h) bytes so that it may not overflow  
 3. make sure stream is coming through S_AXIS S2MM
 4. test memory can R/W 
 5. initialize and configure VDMA IP 
 6. enable acessing to M_AXI_S2MM to wr to memory
 7. wait for M_AXI_S2MM status is no longer halt
 8. enable acessing to M_AXI_MM2S to rd to memorY
-9. wait forM_AXI_MM2S status is no longer halt
+9. wait for M_AXI_MM2S status is no longer halt
 10. check video stream from M_AXIS_MM2S  
  
 datapath:
@@ -74,12 +74,7 @@ after the tlast is asserted, the S2MM start to active
      
 4. M_AXIS_MM2S => AXI4_Stream Subset Converter => TX frame CRC:  
    the data stream is active while tready and tvalid is asserted by VDMA
-   notice that the frequence of data stream needs to be same to the data stream in S_AXIS S2MM
-   
-VDMA Status:  
-M_AXI_MM2S 04h:  
-11000  
-10000  
-10001  
-M_AXI_S2MM 34h:  
-10000
+   notice that the frequence of data stream needs to be same to the data stream in S_AXIS S2MM  
+     
+     
+Support enviroment: vivado 2020.2, vitis 2020.2  
