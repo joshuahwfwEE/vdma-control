@@ -77,5 +77,5 @@ after the tlast is asserted, the S2MM start to active
    notice that the frequence of data stream needs to be same to the data stream in S_AXIS S2MM  
      
      
-<span style ="font-size:36px">Support enviroment:  </span>
+<span style="font-size:24px">Support enviroment:</span>  
 vivado 2020.2, vitis 2020.2  
