@@ -198,8 +198,7 @@ int main()
 
 
     cleanup_platform();
-    return 0;
-}
+
 
 #ifdef v_gamma_lut_0
 int gamma_lut_init() {
@@ -247,3 +246,6 @@ if ( (gamma_lut_config = XV_gamma_lut_LookupConfig(XPAR_V_GAMMA_LUT_0_DEVICE_ID)
 	return XST_SUCCESS;
 }
 #endif
+
+    return 0;
+}
