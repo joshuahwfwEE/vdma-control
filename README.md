@@ -77,6 +77,8 @@ after the tlast is asserted, the S2MM start to active
    the data stream is active while tready and tvalid is asserted by VDMA
    notice that the frequence of data stream needs to be same to the data stream in S_AXIS S2MM  
      
-     
+functions in files:  
+  
+1. APIs: this files contains the
 <span style="font-size:24px">Support enviroment:</span>  
 vivado 2020.2, vitis 2020.2  
