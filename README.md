@@ -79,6 +79,9 @@ after the tlast is asserted, the S2MM start to active
      
 functions in files:  
   
-1. APIs: this files contains the
+1. APIs: this file contains the reference APIs to control the FrameBuffer.  
+2. addition source: this file contains the reference APIs to implement Addaptive Sync function.  
+3. VDMA test: this file contains a simple test to active VDMA to acess memory, you can check ila in vivado to anlysis if the waveform is correct or not.  
+
 <span style="font-size:24px">Support enviroment:</span>  
 vivado 2020.2, vitis 2020.2  
