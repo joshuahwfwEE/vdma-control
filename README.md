@@ -4,22 +4,22 @@ this file is about controling Xilinx IP VDMA to access block ram or external DDR
 the procedure is 
 1. setup VDMA's parameter for resolution 1920x1080p full HD  
   
-   1-1 Address Width: 32 bit
+  Address Width: 32 bit
    
-   1-2 Frame Buffers：3  
+  Frame Buffers：3  
    a set of W/R in an action at the same time  
    FRAME0/FRAME2  
    FRAME1/FRAME0  
    FRAME2/FRAME1  
    ![image](https://github.com/joshuahwfwEE/vdma-control/blob/main/VDMA.PNG)
      
-   1-3 M_AXI_S2MM:  
+  M_AXI_S2MM:  
        Memory Map Data Width: 512 bytes  
        Write/Read Burst Size: 64  
        Stream Data Width：32  
        Line Buffer Depth: 4096  
    
-   1-4 M_AXI_MM2S:  
+  M_AXI_MM2S:  
        Memory Map Data Width: 512 bytes  
        Write/Read Burst Size: 54  
        Stream Data Width：32  
