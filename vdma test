@@ -96,7 +96,7 @@ int main()
 	Xil_Out32((XPAR_AXI_VDMA_0_BASEADDR + 0x0b8), VIDEO_BASEADDR+0x00000000); // start address
 	
 
-	Xil_Out32((XPAR_AXI_VDMA_0_BASEADDR + 0x0a8), (1920 * 4)); // h offset (1920 * 4) bytes
+	Xil_Out32((XPAR_AXI_VDMA_0_BASEADDR + 0x0a8), (1920 * 4)); // h offset (1920 * 4) bytes // you can adjust the frame wdith according your requirment.
 	Xil_Out32((XPAR_AXI_VDMA_0_BASEADDR + 0x0a4), (1920 * 4)); // h size (1920 * 4)  bytes
 	Xil_Out32((XPAR_AXI_VDMA_0_BASEADDR + 0x0a0), 1080); // v size 
 
