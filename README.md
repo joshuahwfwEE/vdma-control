@@ -1,5 +1,6 @@
 # VDMA-control
-this file is about controling Xilinx IP VDMA to access block ram or external DDR4 
+this file is about controling Xilinx IP VDMA to access block ram or external DDR4  
+
 the procedure is 
 1. setup VDMA's parameter for resolution 1920x1080p full HD  
   
